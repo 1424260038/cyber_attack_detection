@@ -67,6 +67,7 @@
 cyber_attack_detection/
 ├── api.py                  # FastAPI 后端服务
 ├── main.py                 # 训练、测试、知识图谱评估入口
+├── 启动器.cmd              # Windows 双击启动入口，调用 run.cmd
 ├── run.cmd                 # Windows 一键启动菜单
 ├── system_check.py         # 系统自检入口
 ├── configs/                # 配置文件
@@ -81,12 +82,22 @@ cyber_attack_detection/
 ├── web/                    # React 前端控制台
 ├── artifacts/              # 预处理器、TorchScript、模型清单
 ├── checkpoints/            # 最佳模型 checkpoint
-└── outputs/                # 报告、OpenAPI、验收清单、审计结果
+└── outputs/                # 自动生成的报告、OpenAPI、验收清单、审计结果
 ```
+
+## 文档说明
+
+仓库主文档只维护 `README.md`。`outputs/project_report.md`、`outputs/demo_runbook.md`、`outputs/acceptance_checklist.md` 和 `outputs/completion_audit.md` 是脚本自动生成的答辩/验收交付物，供 WebUI 下载和发布包打包使用，不再当作重复的人工说明文档维护。前端模板自带的 `web/README.md` 已删除，避免文档入口混乱。
 
 ## 快速运行
 
 ### Windows 菜单方式
+
+```bat
+启动器.cmd
+```
+
+也可以直接运行主菜单脚本：
 
 ```bat
 run.cmd
@@ -207,11 +218,11 @@ python tools/package_release.py
 
 | 文件 | 说明 |
 | --- | --- |
-| `outputs/project_report.md` | 项目报告 |
-| `outputs/demo_runbook.md` | 答辩演示手册 |
+| `outputs/project_report.md` | 自动生成的项目报告 |
+| `outputs/demo_runbook.md` | 自动生成的答辩演示手册 |
 | `outputs/openapi.json` | OpenAPI 接口规范 |
-| `outputs/acceptance_checklist.md` | 验收清单 |
-| `outputs/completion_audit.md` | 完成度审计 |
+| `outputs/acceptance_checklist.md` | 自动生成的验收清单 |
+| `outputs/completion_audit.md` | 自动生成的完成度审计 |
 | `artifacts/model_manifest.json` | 模型、数据和评估清单 |
 | `release/cyberdd_release.zip` | 发布包，运行打包脚本后生成 |
 
