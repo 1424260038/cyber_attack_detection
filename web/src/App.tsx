@@ -15,6 +15,7 @@ import {
   Upload,
   Zap,
 } from "lucide-react";
+import "./App.css";
 
 interface PredictionResult {
   prediction: string;
@@ -434,66 +435,85 @@ function App() {
         : "bg-slate-500/15 text-slate-300 border-slate-400/30";
 
   return (
-    <div className="min-h-screen bg-[#071014] text-slate-100">
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_18%_12%,rgba(20,184,166,0.24),transparent_32%),radial-gradient(circle_at_85%_4%,rgba(248,113,113,0.18),transparent_25%),linear-gradient(135deg,rgba(15,23,42,0.2),rgba(6,78,59,0.12))]" />
-      <header className="relative border-b border-white/10 bg-[#071014]/85 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div className="cyber-shell min-h-screen text-slate-100">
+      <div className="cyber-backdrop" />
+      <header className="cyber-header">
+        <div className="cyber-header-inner">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-2xl bg-cyan-400/10 border border-cyan-300/30">
-              <Shield className="w-6 h-6 text-cyan-300" />
+            <div className="brand-mark">
+              <Shield className="w-6 h-6" />
             </div>
             <div>
-              <div className="text-lg font-semibold tracking-wide">CyberDD 控制台</div>
-              <div className="text-xs text-slate-400">多模态网络攻击行为识别系统</div>
+              <div className="brand-title">CyberDD 控制台</div>
+              <div className="brand-subtitle">网络攻击检测 · 知识图谱解释 · 演示交付</div>
             </div>
           </div>
-          <button onClick={checkApiStatus} className={`px-3 py-1.5 rounded-full text-sm border ${statusClass}`}>
+          <div className="hidden md:flex items-center gap-2 text-xs text-slate-400">
+            <span className="nav-chip">模型推理</span>
+            <span className="nav-chip">批量检测</span>
+            <span className="nav-chip">运行审计</span>
+            <span className="nav-chip">交付物</span>
+          </div>
+          <button onClick={checkApiStatus} className={`status-pill ${statusClass}`}>
+            <span className="status-dot" />
             {apiStatus === "online" ? "API 在线" : apiStatus === "offline" ? "API 离线" : "检测中"}
           </button>
         </div>
       </header>
 
-      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <section className="grid lg:grid-cols-[1.15fr_0.85fr] gap-6 items-stretch mb-6">
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 overflow-hidden relative">
-            <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-cyan-400/10 blur-3xl" />
-            <div className="relative">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-300/10 border border-cyan-200/20 text-cyan-200 text-sm mb-6">
+      <main className="cyber-main">
+        <section className="hero-grid mb-6">
+          <div className="hero-card">
+            <div className="hero-orbit hero-orbit-one" />
+            <div className="hero-orbit hero-orbit-two" />
+            <div className="hero-content">
+              <div className="hero-kicker">
                 <Radar className="w-4 h-4" />
-                大创项目可演示系统
+                大创项目答辩演示系统
               </div>
-              <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight">
+              <h1 className="hero-title">
                 从流量特征到
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-emerald-200 to-amber-200">
-                  攻击识别与链路解释
-                </span>
+                <span>攻击识别与链路解释</span>
               </h1>
-              <p className="mt-5 text-slate-300 text-lg max-w-2xl">
-                系统集成模型推理、批量检测、指标展示和 MITRE ATT&CK 知识图谱解释，适合答辩现场完整演示。
+              <p className="hero-copy">
+                将模型推理、批量检测、事件审计、指标展示和 MITRE ATT&CK 知识图谱整合到一个可演示的安全分析工作台。
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <button onClick={() => loadDemoSample("normal")} className="px-5 py-3 rounded-xl bg-emerald-400 text-slate-950 font-semibold hover:bg-emerald-300">
+              <div className="hero-actions">
+                <button onClick={() => loadDemoSample("normal")} className="action-button action-safe">
                   加载正常样例
                 </button>
-                <button onClick={() => loadDemoSample("attack")} className="px-5 py-3 rounded-xl bg-red-400 text-slate-950 font-semibold hover:bg-red-300">
+                <button onClick={() => loadDemoSample("attack")} className="action-button action-danger">
                   加载攻击样例
                 </button>
-                <button onClick={generateRandomFeatures} className="px-5 py-3 rounded-xl border border-white/15 text-slate-100 hover:bg-white/10">
+                <button onClick={generateRandomFeatures} className="action-button action-ghost">
                   随机特征
                 </button>
+              </div>
+              <div className="demo-flow">
+                <span>样本输入</span>
+                <span>模型检测</span>
+                <span>攻击解释</span>
+                <span>结果导出</span>
               </div>
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <InfoCard icon={Brain} label="模型结构" value={metadata?.architecture ?? "未加载"} />
-            <InfoCard icon={Database} label="输入维度" value={`${expectedFeatureCount} 维`} />
-            <InfoCard icon={BarChart3} label="测试 F1" value={formatPercent(metrics?.test_results?.f1_score)} />
-            <InfoCard icon={Network} label="知识图谱" value={`${knowledgeGraph?.entity_count ?? 0} 实体 / ${knowledgeGraph?.relation_count ?? 0} 关系`} />
-            <InfoCard icon={FileText} label="预处理工件" value={metadata?.preprocessor_loaded ? "已加载" : "未加载"} />
-            <InfoCard icon={AlertTriangle} label="检测事件" value={`${eventSummary?.total_events ?? 0} 条`} />
-            <InfoCard icon={Database} label="数据样本" value={`${datasetSummary?.rows ?? 0} 条`} />
-            <InfoCard icon={CheckCircle} label="数据质量" value={`${datasetProfile?.quality_score ?? 0} 分`} />
+          <div className="command-card">
+            <div className="section-eyebrow">System Snapshot</div>
+            <div className="command-head">
+              <h2>系统概览</h2>
+              <span>{apiStatus === "online" ? "运行正常" : "等待后端"}</span>
+            </div>
+            <div className="overview-grid">
+              <InfoCard icon={Brain} label="模型结构" value={metadata?.architecture ?? "未加载"} />
+              <InfoCard icon={Database} label="输入维度" value={`${expectedFeatureCount} 维`} />
+              <InfoCard icon={BarChart3} label="测试 F1" value={formatPercent(metrics?.test_results?.f1_score)} />
+              <InfoCard icon={Network} label="知识图谱" value={`${knowledgeGraph?.entity_count ?? 0} / ${knowledgeGraph?.relation_count ?? 0}`} />
+              <InfoCard icon={FileText} label="预处理工件" value={metadata?.preprocessor_loaded ? "已加载" : "未加载"} />
+              <InfoCard icon={AlertTriangle} label="检测事件" value={`${eventSummary?.total_events ?? 0} 条`} />
+              <InfoCard icon={Database} label="数据样本" value={`${datasetSummary?.rows ?? 0} 条`} />
+              <InfoCard icon={CheckCircle} label="数据质量" value={`${datasetProfile?.quality_score ?? 0} 分`} />
+            </div>
           </div>
         </section>
 
@@ -760,20 +780,24 @@ function App() {
 
 function InfoCard({ icon: Icon, label, value }: { icon: typeof Shield; label: string; value: string }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
-      <Icon className="w-5 h-5 text-cyan-300 mb-4" />
-      <div className="text-sm text-slate-400">{label}</div>
-      <div className="text-xl font-bold mt-1 break-all">{value}</div>
+    <div className="info-card">
+      <div className="info-icon">
+        <Icon className="w-4 h-4" />
+      </div>
+      <div className="info-label">{label}</div>
+      <div className="info-value">{value}</div>
     </div>
   );
 }
 
 function Panel({ title, icon: Icon, children }: { title: string; icon: typeof Shield; children: React.ReactNode }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
-      <div className="flex items-center gap-2 mb-5">
-        <Icon className="w-5 h-5 text-cyan-300" />
-        <h2 className="text-xl font-bold">{title}</h2>
+    <div className="panel-card">
+      <div className="panel-title-row">
+        <div className="panel-icon">
+          <Icon className="w-5 h-5" />
+        </div>
+        <h2>{title}</h2>
       </div>
       {children}
     </div>
@@ -864,16 +888,16 @@ function PredictionCard({ result }: { result: PredictionResult }) {
 
 function StatPill({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="rounded-2xl bg-black/25 border border-white/10 p-3">
-      <div className="text-xs text-slate-500">{label}</div>
-      <div className="text-lg font-bold mt-1">{value}</div>
+    <div className="stat-pill">
+      <div className="stat-label">{label}</div>
+      <div className="stat-value">{value}</div>
     </div>
   );
 }
 
 function EmptyState({ text }: { text: string }) {
   return (
-    <div className="min-h-40 rounded-2xl border border-dashed border-white/15 bg-black/20 flex items-center justify-center text-slate-500 text-sm text-center px-6">
+    <div className="empty-state">
       {text}
     </div>
   );
@@ -883,10 +907,10 @@ function ArtifactButton({ label, path, onClick }: { label: string; path: string;
   return (
     <button
       onClick={() => onClick(path)}
-      className="px-4 py-3 rounded-2xl border border-white/15 bg-black/20 text-left hover:bg-white/10"
+      className="artifact-button"
     >
-      <div className="text-sm font-semibold text-slate-100">{label}</div>
-      <div className="text-xs text-slate-500 mt-1">{path}</div>
+      <div className="artifact-label">{label}</div>
+      <div className="artifact-path">{path}</div>
     </button>
   );
 }
