@@ -21,6 +21,7 @@ INCLUDE_PATHS = [
     "detector.py",
     "requirements.txt",
     "README.md",
+    "CyberDD启动器.pyw",
     "启动器.cmd",
     "run.cmd",
     "run.sh",

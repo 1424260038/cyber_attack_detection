@@ -21,8 +21,10 @@ web/.vite/
 web/.vite-temp/
 
 # Build and release artifacts
+build/
 release/
 *.zip
+CyberDD启动器.exe
 
 # Training checkpoints generated during experiments
 checkpoints/checkpoint_epoch_*.pth

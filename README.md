@@ -67,8 +67,9 @@
 cyber_attack_detection/
 ├── api.py                  # FastAPI 后端服务
 ├── main.py                 # 训练、测试、知识图谱评估入口
-├── 启动器.cmd              # Windows 双击启动入口，调用 run.cmd
-├── run.cmd                 # Windows 一键启动菜单
+├── CyberDD启动器.pyw       # Windows 图形启动器，推荐双击入口
+├── 启动器.cmd              # Windows 简易启动入口，调用 run.cmd
+├── run.cmd                 # Windows 命令行启动菜单
 ├── system_check.py         # 系统自检入口
 ├── configs/                # 配置文件
 ├── data/                   # 数据加载、预处理、演示数据
@@ -90,6 +91,17 @@ cyber_attack_detection/
 仓库主文档只维护 `README.md`。`outputs/project_report.md`、`outputs/demo_runbook.md`、`outputs/acceptance_checklist.md` 和 `outputs/completion_audit.md` 是脚本自动生成的答辩/验收交付物，供 WebUI 下载和发布包打包使用，不再当作重复的人工说明文档维护。前端模板自带的 `web/README.md` 已删除，避免文档入口混乱。
 
 ## 快速运行
+
+### Windows 图形方式
+
+双击根目录下的 `CyberDD启动器.pyw`，可以通过按钮启动后端、前端、质量检查、报告生成和发布包打包。
+
+如果需要生成真正的 Windows 可执行程序：
+
+```bat
+python tools/build_windows_launcher.py --install-pyinstaller
+CyberDD启动器.exe
+```
 
 ### Windows 菜单方式
 
