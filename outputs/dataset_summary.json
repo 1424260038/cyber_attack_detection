@@ -1,0 +1,19 @@
+{
+  "input": "data\\demo_traffic.csv",
+  "files": [
+    "data\\demo_traffic.csv"
+  ],
+  "output": "data\\prepared_traffic.csv",
+  "rows": 960,
+  "feature_columns": 64,
+  "label_distribution": {
+    "malware": 120,
+    "r2l": 120,
+    "normal": 120,
+    "u2r": 120,
+    "dos": 120,
+    "phishing": 120,
+    "probe": 120,
+    "apt": 120
+  }
+}

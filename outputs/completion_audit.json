@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-06-09T12:43:10",
+  "total": 11,
+  "passed": 11,
+  "failed": 0,
+  "status": "complete",
+  "checks": [
+    {
+      "category": "数据闭环",
+      "requirement": "具备可复现实验数据、标准化数据、数据摘要和质量画像",
+      "passed": true,
+      "evidence": "data/*.csv, outputs/dataset_summary.json, outputs/data_profile.json"
+    },
+    {
+      "category": "模型闭环",
+      "requirement": "具备模型检查点、预处理器、TorchScript 导出和模型清单",
+      "passed": true,
+      "evidence": "checkpoints/best_model.pth, artifacts/*"
+    },
+    {
+      "category": "评估闭环",
+      "requirement": "核心评估指标达到演示验收阈值 0.95",
+      "passed": true,
+      "evidence": "outputs/test_results.json"
+    },
+    {
+      "category": "API 功能",
+      "requirement": "API 覆盖推理、批量检测、上传、回放、事件、解释、数据画像、运维和交付物下载",
+      "passed": true,
+      "evidence": "outputs/openapi.json"
+    },
+    {
+      "category": "前端控制台",
+      "requirement": "前端覆盖单条检测、CSV 检测、回放、事件、指标、数据质量、知识图谱、运维和交付物下载",
+      "passed": true,
+      "evidence": "web/src/App.tsx, web/dist/index.html"
+    },
+    {
+      "category": "知识图谱解释",
+      "requirement": "检测结果能映射到 ATT&CK 攻击链和处置建议",
+      "passed": true,
+      "evidence": "kg/knowledge_graph.py, api.py"
+    },
+    {
+      "category": "运行审计",
+      "requirement": "检测事件可记录、汇总、清空和导出",
+      "passed": true,
+      "evidence": "utils/event_store.py, outputs/openapi.json"
+    },
+    {
+      "category": "部署交付",
+      "requirement": "具备 Docker/Compose、一键流水线、发布包和发布清单",
+      "passed": true,
+      "evidence": "Dockerfile, docker-compose.yml, tools/build_demo_system.py, release/*"
+    },
+    {
+      "category": "验收材料",
+      "requirement": "具备项目报告、答辩手册、OpenAPI、验收清单和完成度审计",
+      "passed": true,
+      "evidence": "outputs/project_report.md, outputs/demo_runbook.md, outputs/openapi.json, outputs/acceptance_checklist.md"
+    },
+    {
+      "category": "发布包内容",
+      "requirement": "发布包包含源码、模型、前端构建、报告、手册、接口规范和验收材料",
+      "passed": true,
+      "evidence": "release/release_manifest.json"
+    },
+    {
+      "category": "质量门禁",
+      "requirement": "完整质量检查脚本覆盖单测、自检、HTTP 冒烟测试、前端类型检查、ESLint 和构建",
+      "passed": true,
+      "evidence": "tools/run_all_checks.py, tests/test_api.py"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-06-09T12:43:10",
+  "total": 17,
+  "passed": 17,
+  "failed": 0,
+  "items": [
+    {
+      "category": "数据准备",
+      "description": "演示数据集",
+      "path": "data/demo_traffic.csv",
+      "exists": true,
+      "size": 564960,
+      "status": "passed"
+    },
+    {
+      "category": "数据准备",
+      "description": "标准化训练数据",
+      "path": "data/prepared_traffic.csv",
+      "exists": true,
+      "size": 564960,
+      "status": "passed"
+    },
+    {
+      "category": "数据质量",
+      "description": "数据集摘要",
+      "path": "outputs/dataset_summary.json",
+      "exists": true,
+      "size": 358,
+      "status": "passed"
+    },
+    {
+      "category": "数据质量",
+      "description": "数据质量画像",
+      "path": "outputs/data_profile.json",
+      "exists": true,
+      "size": 1043,
+      "status": "passed"
+    },
+    {
+      "category": "模型工件",
+      "description": "最佳模型检查点",
+      "path": "checkpoints/best_model.pth",
+      "exists": true,
+      "size": 615157,
+      "status": "passed"
+    },
+    {
+      "category": "模型工件",
+      "description": "预处理器",
+      "path": "artifacts/preprocessor.json",
+      "exists": true,
+      "size": 4010,
+      "status": "passed"
+    },
+    {
+      "category": "模型工件",
+      "description": "TorchScript 部署模型",
+      "path": "artifacts/model.pt",
+      "exists": true,
+      "size": 215757,
+      "status": "passed"
+    },
+    {
+      "category": "模型工件",
+      "description": "模型清单",
+      "path": "artifacts/model_manifest.json",
+      "exists": true,
+      "size": 6040,
+      "status": "passed"
+    },
+    {
+      "category": "评估结果",
+      "description": "测试指标",
+      "path": "outputs/test_results.json",
+      "exists": true,
+      "size": 2186,
+      "status": "passed"
+    },
+    {
+      "category": "API 文档",
+      "description": "OpenAPI 接口规范",
+      "path": "outputs/openapi.json",
+      "exists": true,
+      "size": 38588,
+      "status": "passed"
+    },
+    {
+      "category": "前端",
+      "description": "前端生产构建",
+      "path": "web/dist/index.html",
+      "exists": true,
+      "size": 350,
+      "status": "passed"
+    },
+    {
+      "category": "部署",
+      "description": "Docker 镜像定义",
+      "path": "Dockerfile",
+      "exists": true,
+      "size": 339,
+      "status": "passed"
+    },
+    {
+      "category": "部署",
+      "description": "Docker Compose 编排",
+      "path": "docker-compose.yml",
+      "exists": true,
+      "size": 279,
+      "status": "passed"
+    },
+    {
+      "category": "报告材料",
+      "description": "项目报告",
+      "path": "outputs/project_report.md",
+      "exists": true,
+      "size": 5304,
+      "status": "passed"
+    },
+    {
+      "category": "报告材料",
+      "description": "答辩演示手册",
+      "path": "outputs/demo_runbook.md",
+      "exists": true,
+      "size": 2390,
+      "status": "passed"
+    },
+    {
+      "category": "交付包",
+      "description": "完整发布包",
+      "path": "release/cyberdd_release.zip",
+      "exists": true,
+      "size": 1484482,
+      "status": "passed"
+    },
+    {
+      "category": "交付包",
+      "description": "发布包清单",
+      "path": "release/release_manifest.json",
+      "exists": true,
+      "size": 3105,
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+services:
+  cyberdd:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      CYBERDD_DEVICE: cpu
+    volumes:
+      - ./checkpoints:/app/checkpoints
+      - ./artifacts:/app/artifacts
+      - ./outputs:/app/outputs
+      - ./data:/app/data
+    restart: unless-stopped

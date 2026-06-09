@@ -1,0 +1,35 @@
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Local runtime files
+*.log
+outputs/system.log
+
+# Frontend dependencies and build output
+web/node_modules/
+web/dist/
+web/.vite/
+web/.vite-temp/
+
+# Build and release artifacts
+release/
+*.zip
+
+# Training checkpoints generated during experiments
+checkpoints/checkpoint_epoch_*.pth
+checkpoints/last_model.pth
+outputs/*.pth
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

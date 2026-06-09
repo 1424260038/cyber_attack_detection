@@ -1,0 +1,192 @@
+# 网络攻击检测系统配置文件
+# Cyber Attack Detection System Configuration
+
+# 数据配置
+data:
+  # 数据集路径
+  dataset_path: "./data/CICIDS2017"
+  # 训练集比例
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  
+  # 特征配置
+  features:
+    # 时序特征
+    temporal:
+      - packet_count
+      - byte_count
+      - duration
+      - packet_rate
+      - byte_rate
+    # 统计特征
+    statistical:
+      - mean_packet_size
+      - std_packet_size
+      - min_packet_size
+      - max_packet_size
+    # 图特征
+    graph:
+      - degree
+      - centrality
+      - clustering_coeff
+      - pagerank
+  
+  # 数据增强
+  augmentation:
+    enabled: true
+    methods:
+      - noise_injection
+      - random_masking
+      - mixup
+    augmentation_ratio: 0.3
+
+# 模型配置
+model:
+  # 图注意力网络配置
+  gat:
+    in_channels: 128
+    hidden_channels: 256
+    out_channels: 128
+    num_heads: 8
+    dropout: 0.3
+    layers: 3
+  
+  # CNN-LSTM配置
+  cnn_lstm:
+    # CNN部分
+    cnn:
+      in_channels: 64
+      hidden_channels: [128, 256, 128]
+      kernel_sizes: [3, 5, 7]
+      dropout: 0.3
+    # LSTM部分
+    lstm:
+      input_size: 128
+      hidden_size: 256
+      num_layers: 2
+      dropout: 0.3
+      bidirectional: true
+  
+  # 跨模态对比学习
+  contrastive:
+    temperature: 0.1
+    embedding_dim: 256
+    queue_size: 4096
+  
+  # 融合配置
+  fusion:
+    method: "attention"  # attention, concat, hadamard
+    hidden_dim: 512
+    output_dim: 256
+
+# 训练配置
+training:
+  # 优化器
+  optimizer:
+    type: "AdamW"
+    lr: 0.001
+    weight_decay: 0.0001
+    betas: [0.9, 0.999]
+  
+  # 学习率调度
+  scheduler:
+    type: "CosineAnnealingWarmRestarts"
+    T_0: 10
+    T_mult: 2
+    eta_min: 0.00001
+  
+  # 训练参数
+  epochs: 100
+  batch_size: 64
+  gradient_clip: 1.0
+  early_stopping:
+    patience: 15
+    min_delta: 0.001
+  
+  # 设备配置
+  device: "cpu"  # cuda, cpu
+  num_workers: 4
+  pin_memory: true
+
+# 评估配置
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - auc_roc
+    - ap
+  save_predictions: true
+  confusion_matrix: true
+  roc_curve: true
+
+# 知识图谱配置
+knowledge_graph:
+  # Neo4j配置
+  neo4j:
+    uri: "bolt://localhost:7687"
+    username: "neo4j"
+    password: "password"
+    database: "neo4j"
+  
+  # ATT&CK框架配置
+  attack_framework:
+    version: "v14"
+    tactics:
+      - reconnaissance
+      - resource_development
+      - initial_access
+      - execution
+      - persistence
+      - privilege_escalation
+      - defense_evasion
+      - credential_access
+      - discovery
+      - lateral_movement
+      - collection
+      - command_and_control
+      - exfiltration
+      - impact
+  
+  # 推理配置
+  reasoning:
+    max_depth: 5
+    min_confidence: 0.7
+
+# 轻量化配置
+lightweight:
+  # 知识蒸馏
+  distillation:
+    enabled: true
+    temperature: 4.0
+    alpha: 0.7  # balance between hard and soft labels
+  
+  # 模型剪枝
+  pruning:
+    enabled: true
+    amount: 0.3
+  
+  # 量化
+  quantization:
+    enabled: true
+    dtype: "int8"
+
+# 系统配置
+system:
+  # 日志
+  log:
+    level: "INFO"
+    file: "./logs/system.log"
+    console: true
+  
+  # 检查点
+  checkpoint:
+    save_dir: "./checkpoints"
+    save_best: true
+    save_last: true
+    save_freq: 5
+  
+  # 随机种子
+  seed: 42

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.git/
+.venv/
+venv/
+web/node_modules/
+web/.pnpm-store/
+大创/
+outputs/*.log
+checkpoints/*.log

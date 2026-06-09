@@ -1,0 +1,319 @@
+{
+  "generated_at": "2026-06-09T12:43:36",
+  "model": {
+    "architecture": "SimpleClassifier",
+    "input_dim": 64,
+    "num_classes": 8,
+    "class_names": [
+      "Normal",
+      "DoS/DDoS",
+      "Probe/Scan",
+      "R2L",
+      "U2R",
+      "Malware/Ransomware",
+      "Phishing",
+      "APT"
+    ],
+    "best_val_acc": 100.0,
+    "checkpoint": "checkpoints\\best_model.pth",
+    "checkpoint_sha256": "25a711101f0b9bbb460947e1368fee58c2f94969fae87aada1b926b77d6631e9"
+  },
+  "preprocessor": {
+    "path": "artifacts\\preprocessor.json",
+    "sha256": "47ca380c1661bed5dacdf8ef89db076bf687e9c6dfa6a7fab006765d1db9e040",
+    "feature_columns": [
+      "f0",
+      "f1",
+      "f2",
+      "f3",
+      "f4",
+      "f5",
+      "f6",
+      "f7",
+      "f8",
+      "f9",
+      "f10",
+      "f11",
+      "f12",
+      "f13",
+      "f14",
+      "f15",
+      "f16",
+      "f17",
+      "f18",
+      "f19",
+      "f20",
+      "f21",
+      "f22",
+      "f23",
+      "f24",
+      "f25",
+      "f26",
+      "f27",
+      "f28",
+      "f29",
+      "f30",
+      "f31",
+      "f32",
+      "f33",
+      "f34",
+      "f35",
+      "f36",
+      "f37",
+      "f38",
+      "f39",
+      "f40",
+      "f41",
+      "f42",
+      "f43",
+      "f44",
+      "f45",
+      "f46",
+      "f47",
+      "f48",
+      "f49",
+      "f50",
+      "f51",
+      "f52",
+      "f53",
+      "f54",
+      "f55",
+      "f56",
+      "f57",
+      "f58",
+      "f59",
+      "f60",
+      "f61",
+      "f62",
+      "f63"
+    ]
+  },
+  "torchscript": {
+    "path": "artifacts\\model.pt",
+    "sha256": "e2943441896151fee0ce6af9125492b410d85f8d479b6d931df1761417ba40bc"
+  },
+  "metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "auc_roc": 1.0,
+    "average_precision": 1.0,
+    "confusion_matrix": [
+      [
+        18,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        19,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        17,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        25,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        19,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        18
+      ]
+    ],
+    "classification_report": {
+      "Class_0": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 18.0
+      },
+      "Class_1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 14.0
+      },
+      "Class_2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 19.0
+      },
+      "Class_3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 17.0
+      },
+      "Class_4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 14.0
+      },
+      "Class_5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 25.0
+      },
+      "Class_6": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 19.0
+      },
+      "Class_7": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 18.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 144.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 144.0
+      }
+    }
+  },
+  "dataset_summary": {
+    "input": "data\\demo_traffic.csv",
+    "files": [
+      "data\\demo_traffic.csv"
+    ],
+    "output": "data\\prepared_traffic.csv",
+    "rows": 960,
+    "feature_columns": 64,
+    "label_distribution": {
+      "malware": 120,
+      "r2l": 120,
+      "normal": 120,
+      "u2r": 120,
+      "dos": 120,
+      "phishing": 120,
+      "probe": 120,
+      "apt": 120
+    }
+  },
+  "data_profile": {
+    "path": "outputs\\data_profile.json",
+    "sha256": "124396e9d8f1aa2af4a70b9d80df1c0e484497b3f8e144a42357f9078542d578",
+    "profile": {
+      "input": "data\\demo_traffic.csv",
+      "files": [
+        "data\\demo_traffic.csv"
+      ],
+      "rows": 960,
+      "columns": 65,
+      "numeric_feature_columns": 64,
+      "missing_rate": 0.0,
+      "label_distribution": {
+        "malware": 120,
+        "r2l": 120,
+        "normal": 120,
+        "u2r": 120,
+        "dos": 120,
+        "phishing": 120,
+        "probe": 120,
+        "apt": 120
+      },
+      "class_count": 8,
+      "imbalance_ratio": 1.0,
+      "low_variance_columns": [],
+      "file_profiles": [
+        {
+          "file": "data\\demo_traffic.csv",
+          "rows": 960,
+          "columns": 65,
+          "label_column": "Label",
+          "feature_columns": 64,
+          "numeric_feature_columns": 64,
+          "non_numeric_columns": [],
+          "missing_values": 0,
+          "numeric_missing_or_invalid_values": 0,
+          "label_distribution": {
+            "malware": 120,
+            "r2l": 120,
+            "normal": 120,
+            "u2r": 120,
+            "dos": 120,
+            "phishing": 120,
+            "probe": 120,
+            "apt": 120
+          }
+        }
+      ],
+      "warnings": [],
+      "quality_score": 100
+    }
+  }
+}

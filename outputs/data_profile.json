@@ -1,0 +1,48 @@
+{
+  "input": "data\\demo_traffic.csv",
+  "files": [
+    "data\\demo_traffic.csv"
+  ],
+  "rows": 960,
+  "columns": 65,
+  "numeric_feature_columns": 64,
+  "missing_rate": 0.0,
+  "label_distribution": {
+    "malware": 120,
+    "r2l": 120,
+    "normal": 120,
+    "u2r": 120,
+    "dos": 120,
+    "phishing": 120,
+    "probe": 120,
+    "apt": 120
+  },
+  "class_count": 8,
+  "imbalance_ratio": 1.0,
+  "low_variance_columns": [],
+  "file_profiles": [
+    {
+      "file": "data\\demo_traffic.csv",
+      "rows": 960,
+      "columns": 65,
+      "label_column": "Label",
+      "feature_columns": 64,
+      "numeric_feature_columns": 64,
+      "non_numeric_columns": [],
+      "missing_values": 0,
+      "numeric_missing_or_invalid_values": 0,
+      "label_distribution": {
+        "malware": 120,
+        "r2l": 120,
+        "normal": 120,
+        "u2r": 120,
+        "dos": 120,
+        "phishing": 120,
+        "probe": 120,
+        "apt": 120
+      }
+    }
+  ],
+  "warnings": [],
+  "quality_score": 100
+}
