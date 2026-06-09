@@ -1,6 +1,6 @@
 # CyberDD 项目验收清单
 
-生成时间：2026-06-09T12:43:10
+生成时间：2026-06-09T13:49:57
 
 验收结果：17/17 项通过
 
@@ -19,7 +19,7 @@
 | 前端 | 前端生产构建 | `web/dist/index.html` | 通过 | 350 |
 | 部署 | Docker 镜像定义 | `Dockerfile` | 通过 | 339 |
 | 部署 | Docker Compose 编排 | `docker-compose.yml` | 通过 | 279 |
-| 报告材料 | 项目报告 | `outputs/project_report.md` | 通过 | 5304 |
-| 报告材料 | 答辩演示手册 | `outputs/demo_runbook.md` | 通过 | 2390 |
-| 交付包 | 完整发布包 | `release/cyberdd_release.zip` | 通过 | 1484482 |
-| 交付包 | 发布包清单 | `release/release_manifest.json` | 通过 | 3105 |
+| 报告材料 | 项目报告 | `outputs/project_report.md` | 通过 | 5778 |
+| 报告材料 | 答辩演示手册 | `outputs/demo_runbook.md` | 通过 | 4824 |
+| 交付包 | 完整发布包 | `release/cyberdd_release.zip` | 通过 | 1417047 |
+| 交付包 | 发布包清单 | `release/release_manifest.json` | 通过 | 2957 |

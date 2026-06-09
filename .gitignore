@@ -12,6 +12,7 @@ env/
 # Local runtime files
 *.log
 outputs/system.log
+outputs/detection_events.jsonl
 
 # Frontend dependencies and build output
 web/node_modules/

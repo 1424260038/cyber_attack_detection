@@ -244,6 +244,8 @@ def check_frontend_build() -> bool:
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
+        encoding="utf-8",
+        errors="replace",
     )
     return True
 
