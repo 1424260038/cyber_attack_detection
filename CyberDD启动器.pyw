@@ -11,7 +11,14 @@ import tkinter as tk
 from tkinter import messagebox
 
 
-PROJECT_DIR = Path(__file__).resolve().parent
+def project_dir() -> Path:
+    """Resolve the project root without depending on a fixed install path."""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent
+
+
+PROJECT_DIR = project_dir()
 WEB_DIR = PROJECT_DIR / "web"
 CREATE_NEW_CONSOLE = getattr(subprocess, "CREATE_NEW_CONSOLE", 0)
 
@@ -42,7 +49,7 @@ def start_shell(title: str, command: str, cwd: Path = PROJECT_DIR) -> None:
         return
 
     if os.name == "nt":
-        shell_command = f'title {title} && cd /d "{cwd}" && {command}'
+        shell_command = f"title {title} && set PYTHONIOENCODING=utf-8 && chcp 65001 >nul 2>&1 && {command}"
         subprocess.Popen(
             ["cmd.exe", "/k", shell_command],
             cwd=str(cwd),
@@ -163,7 +170,7 @@ class CyberDDLauncher(tk.Tk):
         if not (WEB_DIR / "package.json").exists():
             messagebox.showerror("前端目录缺失", "没有找到 web/package.json。")
             return
-        start_shell("CyberDD Web Frontend", "pnpm run dev", WEB_DIR)
+        start_shell("CyberDD Web Frontend", "call pnpm run dev", WEB_DIR)
         self.set_status("已启动 Web 前端窗口：http://localhost:5173")
 
     def open_web(self) -> None:
@@ -204,7 +211,7 @@ class CyberDDLauncher(tk.Tk):
         self.set_status("已打开项目目录。")
 
     def open_cmd_menu(self) -> None:
-        start_shell("CyberDD Command Menu", "run.cmd")
+        start_shell("CyberDD Command Menu", "call run.cmd")
         self.set_status("已打开命令行菜单 run.cmd。")
 
 
