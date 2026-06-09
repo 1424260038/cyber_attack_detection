@@ -217,6 +217,43 @@ def compute_feature_contributions(
         )
     return sorted(ranked, key=lambda item: item["score"], reverse=True)[:top_k]
 
+
+def load_demo_feature_sample(label: str) -> list[float]:
+    """Load one real demo row and convert it to the model input space."""
+    expected_dim = int(model_info["input_dim"])
+    demo_path = script_dir / "data" / "demo_traffic.csv"
+    if not demo_path.exists():
+        raise HTTPException(status_code=404, detail="data/demo_traffic.csv not found")
+
+    df = pd.read_csv(demo_path, low_memory=False)
+    if "Label" not in df.columns:
+        raise HTTPException(status_code=500, detail="Demo CSV must contain a Label column")
+
+    normalized_labels = df["Label"].map(normalize_label)
+    if label == "normal":
+        matches = df[normalized_labels == "normal"]
+    else:
+        matches = df[normalized_labels != "normal"]
+
+    if matches.empty:
+        raise HTTPException(status_code=500, detail=f"No {label} sample found in demo CSV")
+
+    sample = matches.iloc[[0]]
+    if preprocessor is not None and len(preprocessor.feature_columns) == expected_dim:
+        features = preprocessor.transform_frame(sample)[0]
+    else:
+        feature_columns = [col for col in sample.columns if col not in DEFAULT_EXCLUDED_COLUMNS]
+        numeric = sample[feature_columns].apply(pd.to_numeric, errors="coerce").dropna(axis=1, how="all")
+        if numeric.shape[1] < expected_dim:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Demo CSV needs at least {expected_dim} numeric feature columns, got {numeric.shape[1]}",
+            )
+        features = numeric.iloc[0, :expected_dim].fillna(0.0).to_numpy(dtype="float32")
+
+    return [round(float(value), 6) for value in features]
+
+
 def predict_features(features: list[float], feature_names: list[str] | None = None) -> dict[str, Any]:
     expected_dim = int(model_info["input_dim"])
     if len(features) != expected_dim:
@@ -495,11 +532,10 @@ def demo_samples():
     if not model_loaded:
         raise HTTPException(status_code=503, detail=model_error or "Model not loaded")
 
-    input_dim = int(model_info["input_dim"])
     return {
-        "normal": [0.05 for _ in range(input_dim)],
-        "attack": [2.0 for _ in range(input_dim)],
-        "description": "normal 样例接近基线流量，attack 样例模拟高强度异常流量。",
+        "normal": load_demo_feature_sample("normal"),
+        "attack": load_demo_feature_sample("attack"),
+        "description": "样例来自 data/demo_traffic.csv，并已转换为模型实际使用的标准化输入空间。",
     }
 
 @app.post("/demo/replay", response_model=DemoReplayResponse)

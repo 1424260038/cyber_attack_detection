@@ -85,14 +85,19 @@ class ApiTestCase(unittest.TestCase):
 
     def test_predict_records_event(self) -> None:
         samples = self.client.get("/demo-samples").json()
+        normal_response = self.client.post("/predict", json={"features": samples["normal"]})
+        self.assertEqual(normal_response.status_code, 200)
+        self.assertEqual(normal_response.json()["prediction"], "Normal")
+        self.assertEqual(normal_response.json()["risk_level"], "Low")
+
         response = self.client.post("/predict", json={"features": samples["attack"]})
         self.assertEqual(response.status_code, 200)
-        self.assertIn(response.json()["prediction"], {"Normal", "Attack"})
+        self.assertEqual(response.json()["prediction"], "Attack")
         self.assertGreater(len(response.json()["feature_contributions"]), 0)
 
         summary = self.client.get("/events/summary")
         self.assertEqual(summary.status_code, 200)
-        self.assertEqual(summary.json()["total_events"], 1)
+        self.assertEqual(summary.json()["total_events"], 2)
 
     def test_upload_records_events(self) -> None:
         csv_path = PROJECT_DIR / "data" / "demo_traffic.csv"
